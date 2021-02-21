@@ -1,5 +1,5 @@
-import React, { Fragment, useState, useEffect } from 'react'
-import MapComponent from './components/map'
+import React from 'react'
+import MapComponent from './components/Map'
 
 import './App.scss';
 

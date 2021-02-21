@@ -1,36 +1,39 @@
-import { Map, GoogleApiWrapper } from 'google-maps-react';
+import { useDispatch, useSelector } from 'react-redux'
+import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+
 import SuggestionBar from '../SuggestionBar';
+import { setMapEntity } from '../../redux/actions/MapAction'
 
 const mapStyles = {
     width: '100%',
     height: '100%'
 }
 
-const fetchPlaces = (mapProps, map) => {
-    const { google } = mapProps;
-
-    const options = {
-    componentRestrictions: { country: "us" },
-    fields: ["address_components", "geometry", "icon", "name"],
-    origin: { lat: 50.064192, lng: -130.605469 },
-    strictBounds: false,
-    types: ["establishment"],
-    };
-    const autocomplete = new google.maps.places.Autocomplete('bar', options);
-}
-
 const MapComponent = ({ google }) => {
-    
+    const dispatch = useDispatch();
+
+    const markerList = useSelector(state => state.suggestions);
+    const map = useSelector(state => state.map);
+
     return (
         <div>
-            <SuggestionBar />
+            {map && <SuggestionBar />}
             <Map
                 google={google}
-                onReady={fetchPlaces}
+                onReady={(_mapProps, map) => dispatch(setMapEntity(map))}
                 zoom={8}
                 style={mapStyles}
                 initialCenter={{ lat: 47.444, lng: -122.176 }}
-            />
+            >
+                {markerList.length > 0 && markerList.map( (placeDetails, index)  =>
+                    <Marker key={index} name={placeDetails.name}
+                    position={{
+                        lat: placeDetails.geometry.location.lat(),
+                        lng: placeDetails.geometry.location.lng()
+                    }}>
+                </Marker>
+                )}
+            </Map>
         </div>
     );
 }

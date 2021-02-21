@@ -1,23 +1,28 @@
-import React, { Fragment, useState, useEffect } from 'react'
-import SuggestionList from '../SuggestionList'
-import logic from '../../logic'
+import React, { Fragment } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-const SuggestionBar = ({ google }) => {
-    const [results, setResults] = useState('')
-    const handleFetch = (query) => {
-        logic.autocomplete(query).then(settheState)
+import fetchAutoComplete from '../../redux/actions/AutocompleteAction'
+
+import SuggestionList from './SuggestionList'
+import SuggestionInput from './SuggestionInput'
+
+const SuggestionBar = () => {
+    const query = useSelector(state => state.autocomplete.query);
+    const dispatch = useDispatch();
+
+    const handleSetSuggestion = () => {
+
+    }
+
+    const handleAutocomplete = () => {
+
     }
 
     return (
-        <Fragment>
-            <label>Search:</label>
-            <input name='search' type='text' onChange={(e) => {
-                e.preventDefault();
-                
-                handleFetch(e.target.value)
-            }}></input>
-            <SuggestionList list={results}/>
-        </Fragment >
+        <div className="search-bar">
+            <SuggestionInput query={query} autocomplete={ handleAutocomplete} />
+            <SuggestionList setSuggestion={handleSetSuggestion} />
+        </div >
     );
 }
 
