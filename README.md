@@ -27,7 +27,7 @@ Soluciones:
 
       getTotal (){
         return this.services.reduce((total, service) => {
-            const servicePrice = service.contentPrice;
+            const servicePrice = service.price;
             
             if(service.hasOwnProperty('aditionalFee')){
                 servicePrice += service.aditionalFee
@@ -47,4 +47,5 @@ Soluciones:
 3- el valor añadido va incluido en el objecto servicio, teniendo asi el valor añadido del momento en el que se hizo el pago, sin tener que consultar al servicio multimedia con el riesgo de que las condiciones del contenido hayan cambiado
 
 ## Exercise 2
+Ir a /maps-watcher
 * [React Marker Demo](maps-watcher/README.md)
