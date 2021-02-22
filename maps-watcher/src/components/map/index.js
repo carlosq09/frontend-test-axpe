@@ -1,40 +1,59 @@
+import { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+//actions
+import { setMapEntity } from '../../redux/Map/Action'
+import { removeMarker } from '../../redux/Markers/Action'
 
-import SuggestionBar from '../SuggestionBar';
-import { setMapEntity } from '../../redux/actions/MapAction'
+import './index.scss'
 
-const mapStyles = {
+const containerStyle = {
+    position: 'relative',
+    width: '100%',
+    height: '96vh'
+  }
+
+  const style = {
     width: '100%',
     height: '100%'
-}
+  }
 
-const MapComponent = ({ google }) => {
+const MapComponent = ({  google }) => {
     const dispatch = useDispatch();
 
     const markerList = useSelector(state => state.suggestions);
-    const map = useSelector(state => state.map);
+    const defaultLocation = useSelector(state => state.autocomplete.default_location);
+    
+    const handleRemoveMarker = ({ id }) => {
+        dispatch(removeMarker(id))
+    }
 
     return (
-        <div>
-            {map && <SuggestionBar />}
+        <div className="main-map">
             <Map
                 google={google}
                 onReady={(_mapProps, map) => dispatch(setMapEntity(map))}
                 zoom={8}
-                style={mapStyles}
-                initialCenter={{ lat: 47.444, lng: -122.176 }}
+                mapTypeControl={false}
+                zoomControl={false}
+                initialCenter={defaultLocation}
+                center={markerList.length? markerList[markerList.length-1].geometry.location : defaultLocation}
+                streetViewControl={false}
+                fullscreenControl={false}
+                style={style}
+                containerStyle={containerStyle}
+                initialCenter={defaultLocation}
             >
-                {markerList.length > 0 && markerList.map( (placeDetails, index)  =>
-                    <Marker key={index} name={placeDetails.name}
-                    position={{
-                        lat: placeDetails.geometry.location.lat(),
-                        lng: placeDetails.geometry.location.lng()
-                    }}>
-                </Marker>
+                {markerList.map((placeDetails) =>
+                    <Marker key={placeDetails.place_id} name={placeDetails.name}
+                        id={placeDetails.place_id}
+                        onClick={handleRemoveMarker}
+                        position={placeDetails.geometry.location}>
+                    </Marker>
                 )}
             </Map>
         </div>
+      
     );
 }
 

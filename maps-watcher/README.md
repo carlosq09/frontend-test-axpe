@@ -1,3 +1,42 @@
+# Marker Manager
+
+[![react version](https://img.shields.io/badge/react-blue.svg)](https://www.npmjs.com/package/react/) 
+[![googlemapsreact](https://img.shields.io/badge/googlemapsreact-green.svg)](https://www.npmjs.com/package/google-maps-react)
+[![redux](https://img.shields.io/badge/redux-purple.svg)](https://www.npmjs.com/package/redux/) 
+[![jest](https://img.shields.io/badge/jest-orange.svg)](https://www.npmjs.com/package/jest/) 
+
+
+## Introduction
+
+Devslides is a platform for making presentations with your coding skills, that gives you more control of your presentation slides just like making a classical html/css website
+
+Create a presentation and make many slides you desire, each one with its own css3 stylesheet
+
+
+## Functional Description
+
+* Search for places using Autocomplete API
+
+* Add a new marker based on the Autocomplete suggestion
+
+* Map is centered into last location marker
+
+* Remove each Marker with a click
+
+* Barcelona is the default location
+
+## Optimizations
+
+Only To avoid having more dependencies [![googlemapsreact](https://img.shields.io/badge/googlemapsreact-green.svg)](https://www.npmjs.com/package/google-maps-react) already imports the Places API, so requests to the Places details are handled by the application logic
+
+Each request is catched into the storage for each session, so if you make a previous request you are going to recieve the result from cache
+
+
+## [Deployed Live demo](http://interesting-office.surge.sh/)
+
+deployed live demo using surge.sh
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

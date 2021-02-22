@@ -1,3 +1,4 @@
+//constants
 export const SET_MAP_ENTITY = 'SET_MAP_ENTITY';
 
 export const setMapEntity = (map) => {

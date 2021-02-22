@@ -1,27 +1,32 @@
-import { AUTOCOMPLETE_FAILURE, AUTOCOMPLETE_SUCCESS } from "../actions/AutocompleteAction";
+import { AUTOCOMPLETE_SUCCESS, CLEAR_RESULTS } from "./Action";
 
 const initialState = {
+    default_location: { //barcelona
+        lat: 41.3879, 
+        lng: 2.16992
+    },
     results: [],
-    query: '',
-    error: ''
+    query: ''
 }
 
 // Reducer
 function autocomplete(state = initialState, action = {}) {
     switch (action.type) {
         case AUTOCOMPLETE_SUCCESS:
+            debugger
             return {
                 ...state,
-                results: action.payload.results,
+                results: action.payload.results || [],
                 query: action.payload.query
             }
 
-        case AUTOCOMPLETE_FAILURE:
+        case CLEAR_RESULTS:
             return {
                 ...state,
-                error: action.payload
+                query: '',
+                results: []
             }
-        // do reducer stuff
+
         default: return state;
     }
 }

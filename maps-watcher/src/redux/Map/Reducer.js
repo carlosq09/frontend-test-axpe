@@ -1,5 +1,4 @@
-import { act } from "react-dom/test-utils";
-import { SET_MAP_ENTITY } from "../actions/MapAction";
+import { SET_MAP_ENTITY } from "./Action";
 
 // Reducer
 function map(state = null, action = {}) {
