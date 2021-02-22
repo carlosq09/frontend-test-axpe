@@ -6,13 +6,6 @@
 [![jest](https://img.shields.io/badge/jest-orange.svg)](https://www.npmjs.com/package/jest/) 
 
 
-## Introduction
-
-Devslides is a platform for making presentations with your coding skills, that gives you more control of your presentation slides just like making a classical html/css website
-
-Create a presentation and make many slides you desire, each one with its own css3 stylesheet
-
-
 ## Functional Description
 
 * Search for places using Autocomplete API
