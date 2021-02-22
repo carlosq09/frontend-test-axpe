@@ -1,7 +1,7 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 //actions
-import { fetchAutoComplete, clear } from '../../redux/AutoComplete/Action'
+import { fetchAutoComplete } from '../../redux/AutoComplete/Action'
 //components
 import SearchList from './SearchList'
 import SearchInput from './SearchInput'
@@ -10,12 +10,13 @@ import './index.scss'
 
 const SearchBar = () => {
     const dispatch = useDispatch();
-    const query = useSelector(state => state.autocomplete.query);
+    const [query, setQuery] = useState('');
     
     const handleAutocomplete = (_query) => {
+        setQuery(_query)
         dispatch(fetchAutoComplete(_query))
         if(_query == '') {
-            dispatch(clear())
+            setQuery('');
         }
     }
 
