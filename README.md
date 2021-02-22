@@ -27,7 +27,7 @@ Soluciones:
 
       getTotal (){
         return this.services.reduce((total, service) => {
-            const servicePrice = service.contentPrice;
+            const servicePrice = service.price;
             
             if(service.hasOwnProperty('aditionalFee')){
                 servicePrice += service.aditionalFee
