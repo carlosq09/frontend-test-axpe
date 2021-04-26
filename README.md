@@ -9,9 +9,9 @@ Problemas:
 
 1 - El codigo hace uso de muchos condicionales (if) para las operaciones, a futuro esto puede resultar en un codigo dificil de mantener
 
-2- El precio no viene incluido en el servicio, si no que depende una segunda clase (MultimediaContent)
+2- El precio no viene incluido la clase Service, si no que depende una segunda clase (MultimediaContent)
 
-3- el valor añadido va condicionado(if) al tipo de contenido, a futuro podria existir mas tipos de contenidos con valor añadido (Premium, Exclusivo, etc...)
+3- el valor añadido va condicionado(if) al tipo de contenido, a futuro podrian existir mas tipos de contenidos con valor añadido (Premium, Exclusivo, etc...)
 
 El enunciado ya menciona que el codigo es pseudocodigo, pero a tomar en cuenta:
 
@@ -46,7 +46,7 @@ Soluciones:
 
 1 - Se aplica el principio KISS, dado que los precios (tanto el precio base como el aditionalFee) vienen incluido en el servicio directamente
 
-2-  Se depende solamente de la clase mas cercana "Service" y no de la segunda clase "MultimediaContent", la cual si a futuro llegase a cambiar la implementacion de esta segunda clase, afectaria al comportamiento (ley de Demeter)
+2-  Ahora depende solamente de la clase "Service" y no de la segunda clase "MultimediaContent" evitando acoplamientos que a futuro pueden ser complicados de mantener (ley de Demeter)
 
 ## Exercise 2
 Ir a /maps-watcher
